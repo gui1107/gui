@@ -2,11 +2,9 @@ package com.wengui.gui.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wengui.gui.entity.Rule;
-import com.wengui.gui.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,5 +17,11 @@ public interface RuleMapper extends BaseMapper<Rule> {
     void postRuleInsert( Rule rule);
 
     @Select("select * from postrule")
-    List<User> findAll();
+    List<Rule> findAll();
+
+    @Select("select * from postrule where id = #{id}")
+    Rule idIsExist(int id);
+
+    @Insert("insert into argsrule(id, ruletype, ruleitem) values(#{Id},#{RuleType},#{RuleItem})")
+    void argsRuleInsert(Rule rule);
 }

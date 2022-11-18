@@ -1,9 +1,8 @@
 package com.wengui.gui.controller;
 
-import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.wengui.gui.common.Result;
 import com.wengui.gui.entity.Rule;
-import com.wengui.gui.entity.User;
 import com.wengui.gui.mapper.RuleMapper;
 import com.wengui.gui.service.Impl.RuleServicelmpl;
 import com.wengui.gui.service.RuleService;
@@ -32,14 +31,14 @@ public class RuleController {
     //规则读取
     @GetMapping("/read")
     public Result readrule(@RequestParam String file) throws IOException {
-        return Result.success(ruleService.readrule(file));
+        return Result.success(ruleService.readRule(file));
     }
 
     @GetMapping("/page")
     public Result findpage(@RequestParam Integer pageNum, @RequestParam Integer pageSize){
         pageNum = (pageNum -1) * pageSize;
-        List<User> users = ruleMapper.findAll();
-        int total = users.size();
+        List<Rule> rules = ruleMapper.findAll();
+        int total = rules.size();
         List<Rule>  data = ruleMapper.selectPage(pageNum,pageSize);
         Map<String,Object> res = new HashMap<>();
         res.put("data",data);
@@ -47,4 +46,9 @@ public class RuleController {
         return Result.success(res);
     }
 
+    @PostMapping("/save")
+    public Result saveRule(@RequestParam String file)  {
+        ruleServicelmpl.saveRule(file);
+        return Result.success("保存成功");
+    }
 }

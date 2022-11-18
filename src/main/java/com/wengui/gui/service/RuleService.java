@@ -6,5 +6,5 @@ import java.io.IOException;
 import java.util.List;
 
 public interface RuleService {
-    public List<Rule> readrule(String file) throws IOException;
+    public List<Rule> readRule(String file) throws IOException;
 }

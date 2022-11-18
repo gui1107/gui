@@ -5,5 +5,4 @@ public class RuleDTO {
     private String RuleType;
     private String RuleItem;
     private String mark;
-
 }

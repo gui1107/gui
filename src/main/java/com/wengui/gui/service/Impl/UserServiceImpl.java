@@ -24,7 +24,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         try {
             user = getUserInfo(userDTO);
         }catch (Exception e){
-            log.error(String.valueOf(e));
             throw new ServiceException(Constants.CODE_500,"系统错误");
         }
         if(user != null){

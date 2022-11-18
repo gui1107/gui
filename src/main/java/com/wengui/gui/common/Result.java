@@ -17,12 +17,12 @@ public class Result {
     private String msg;
     private Object data;
 
-    public static Result success(int i, List<String> list){
-        return new Result(Constants.CODE_200, "", null);
-    }
-
     public static Result success(Object data){
         return new Result(Constants.CODE_200, "", data);
+    }
+
+    public static Result success(String msg){
+        return new Result(Constants.CODE_200, msg,null);
     }
 
     public static Result error(String code, String msg){
